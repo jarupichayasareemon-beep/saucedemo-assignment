@@ -22,8 +22,16 @@ export class InventoryPage {
     await this.page.locator(`[data-test="add-to-cart-${this.toSlug(productName)}"]`).click();
   }
 
+  async removeProductFromCart(productName: string) {
+    await this.page.locator(`[data-test="remove-${this.toSlug(productName)}"]`).click();
+  }
+
   async getProductPrice(productName: string): Promise<string> {
     const item = this.inventoryItems.filter({ hasText: productName });
     return item.locator('[data-test="inventory-item-price"]').innerText();
+  }
+
+  isProductInCart(productName: string): Locator {
+    return this.page.locator(`[data-test="remove-${this.toSlug(productName)}"]`);
   }
 }

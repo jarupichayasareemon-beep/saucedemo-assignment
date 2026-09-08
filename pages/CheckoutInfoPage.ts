@@ -6,7 +6,9 @@ export class CheckoutInfoPage {
   readonly lastNameInput: Locator;
   readonly postalCodeInput: Locator;
   readonly continueButton: Locator;
+  readonly cancelButton: Locator;
   readonly errorMessage: Locator;
+  readonly errorCloseButton: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -14,7 +16,9 @@ export class CheckoutInfoPage {
     this.lastNameInput = page.locator('[data-test="lastName"]');
     this.postalCodeInput = page.locator('[data-test="postalCode"]');
     this.continueButton = page.locator('[data-test="continue"]');
+    this.cancelButton = page.locator('[data-test="cancel"]');
     this.errorMessage = page.locator('[data-test="error"]');
+    this.errorCloseButton = page.locator('[data-test="error-button"]');
   }
 
   async fillInfo(firstName: string, lastName: string, postalCode: string) {
@@ -25,5 +29,13 @@ export class CheckoutInfoPage {
 
   async continueToOverview() {
     await this.continueButton.click();
+  }
+
+  async cancel() {
+    await this.cancelButton.click();
+  }
+
+  async dismissError() {
+    await this.errorCloseButton.click();
   }
 }

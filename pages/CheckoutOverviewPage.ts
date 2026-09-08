@@ -7,6 +7,9 @@ export class CheckoutOverviewPage {
   readonly taxLabel: Locator;
   readonly totalLabel: Locator;
   readonly finishButton: Locator;
+  readonly cancelButton: Locator;
+  readonly paymentInfoValue: Locator;
+  readonly shippingInfoValue: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -15,6 +18,9 @@ export class CheckoutOverviewPage {
     this.taxLabel = page.locator('[data-test="tax-label"]');
     this.totalLabel = page.locator('[data-test="total-label"]');
     this.finishButton = page.locator('[data-test="finish"]');
+    this.cancelButton = page.locator('[data-test="cancel"]');
+    this.paymentInfoValue = page.locator('[data-test="payment-info-value"]');
+    this.shippingInfoValue = page.locator('[data-test="shipping-info-value"]');
   }
 
   async getItemNames(): Promise<string[]> {
@@ -46,5 +52,9 @@ export class CheckoutOverviewPage {
 
   async finish() {
     await this.finishButton.click();
+  }
+
+  async cancel() {
+    await this.cancelButton.click();
   }
 }
